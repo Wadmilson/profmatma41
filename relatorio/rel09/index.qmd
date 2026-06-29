@@ -1,0 +1,57 @@
+---
+# Só mude aqui!!!!
+author: "Wadmilson Costa da Fonseca e Cruz"
+title: "Relatório 09"
+bibliography: referencias.bib
+# A partir daqui nao faca alteracoes!!!!!
+link-citations: true
+csl: associacao-brasileira-de-normas-tecnicas-ipea.csl
+subtitle: "<a href='https://bendeivide.github.io/courses/epaec/' target='_blank'>Estatística e Probabilidade</a> </br> <a href='https://bendeivide.github.io' target='_blank'>Prof. Ben Dêivide (DEFIM/CAP/UFSJ)</a>"
+include-before-body: header.html
+date: now
+date-format: "DD/MM/YYYY, HH:mm"
+lang: pt-BR
+format:
+  html:
+    toc: true
+    number-sections: true
+    theme: bootstrap
+    #css: styles.css
+    code-fold: true
+    code-tools: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+
+## 📌 Introdução
+
+
+
+
+
+## 🎯 Objetivos
+
+
+
+
+---
+
+## ⚙️ Metodologia
+
+
+---
+
+## 🔍 Resultados e Discussão
+
+
+## 🧠 Considerações finais
+
+
+
+
+
+## 📖 Referências
+

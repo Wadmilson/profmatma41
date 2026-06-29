@@ -1,0 +1,342 @@
+---
+# Só mude aqui!!!!
+author: "Wadmilson Costa da Fonseca e Cruz"
+title: "Relatório 08"
+bibliography: referencias.bib
+# A partir daqui nao faca alteracoes!!!!!
+link-citations: true
+csl: associacao-brasileira-de-normas-tecnicas-ipea.csl
+subtitle: "<a href='https://bendeivide.github.io/courses/epaec/' target='_blank'>Estatística e Probabilidade</a> </br> <a href='https://bendeivide.github.io' target='_blank'>Prof. Ben Dêivide (DEFIM/CAP/UFSJ)</a>"
+include-before-body: header.html
+date: now
+date-format: "DD/MM/YYYY, HH:mm"
+lang: pt-BR
+format:
+  html:
+    toc: true
+    number-sections: true
+    theme: bootstrap
+    #css: styles.css
+    code-fold: true
+    code-tools: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+
+## 📌 Introdução
+
+As grandezas medidas em experimentos práticos, como a distância percorrida por um projétil ou por uma catapulta, geralmente apresentam variações que podem ser modeladas pela distribuição de probabilidade Normal, pressuposto adotado neste estudo.
+ 
+O relatório consiste na análise de desempenho de uma catapulta, na qual foram testadas diferentes combinações de ajustes operacionais definidos por níveis de controle.
+
+
+
+## 🎯 Objetivo
+
+Comparar dois grupos de população.
+ 
+Hipóteses a testar:
+ 
+- $H_0: \mu_1 = \mu_2$
+
+- $H_1: \mu_1 \neq \mu_2$ – teste bilateral, nível de confiança 95\% ($\alpha = 0,05$)
+ 
+Variável resposta: Distância do balão arremessado pela catapulta.
+
+
+## 📚 Metodologia
+
+### Definição dos Grupos
+
+*Grupo 1*  
+Combinações: O$^-$ (Nível I); A$^+$ (Nível II); A$-$ (Nível III); B$^+$ (Nível V)  
+$n_1 = 15$  
+Valores: 226, 212, 196, 210, 207, 211, 212, 205, 197, 202, 216, 218, 209, 209, 209
+
+*Grupo 2*  
+Combinações: O$^-$ (Nível I); A$^+$ (Nível II); A$^-$ (Nível III); B$^+$ (Nível IX)  
+$n_2 = 15$  
+Valores: 174, 171, 198, 165, 205, 202, 196, 204, 212, 197, 216, 211, 209, 211, 196
+
+*Procedimentos de cálculo*
+
+1. Cálculo de médias, variâncias e desvios padrão amostrais.
+
+2. Verificação de variâncias: como $S_1^2 = 59,21$ e $S_2^2 = 248,75$ não são iguais, utilizou-se o teste t de Welch, não empregando variâncias combinadas.
+
+3. Cálculo dos graus de liberdade ajustados pela fórmula de Welch, com arredondamento sempre para baixo na consulta à tabela.
+
+4. Comparação entre valor calculado, valor crítico e valor-$p$ para decisão estatística.
+
+
+
+
+## ⚙️ Resultados e Discussão
+
+**GRUPO 1** 
+
+$n_1 = 15$
+
+**Cálculo da Média** ($\bar{X}_1$)
+
+$$
+\bar{X}_1=\frac{\sum_{i=1}^{n_1}X_i}{n_1}
+$$
+
+Soma dos valores:
+
+$$
+226+212+196+210+207+211+212+205+197+202+216+218+209+209+209=3139
+$$
+
+$$
+\bar{X}_1=\frac{3139}{15}=209,27
+$$
+
+**Cálculo da Variância Amostral** ($S_1^2$)
+
+$$
+S_1^2=\frac{\sum_{i=1}^{n_1}(X_i-\bar{X}_1)^2}{n_1-1}
+$$
+
+Soma total dos quadrados dos desvios:
+
+$$
+\sum_{i=1}^{n_1}(X_i-\bar{X}_1)^2=828,8887
+$$
+
+Denominador:
+
+$$
+n_1-1=15-1=14
+$$
+
+$$
+S_1^2=\frac{828,8887}{14}=59,21
+$$
+
+**Cálculo do Desvio Padrão Amostral** ($S_1$)
+
+$$
+S_1=\sqrt{S_1^2}=\sqrt{59,21}=7,69
+$$
+
+
+**GRUPO 2** 
+
+$n_2 = 15$
+
+**Cálculo da Média** ($\bar{X}_2$)
+
+$$
+\bar{X}_2=\frac{\sum_{i=1}^{n_2}X_i}{n_2}
+$$
+
+Soma dos valores:
+
+$$
+174+171+198+165+205+202+196+204+212+197+216+211+209+211+196=2967
+$$
+
+$$
+\bar{X}_2=\frac{2967}{15}=197,80
+$$
+
+
+
+**Cálculo da Variância Amostral** ($S_2^2$)
+
+$$
+S_2^2=\frac{\sum_{i=1}^{n_2}(X_i-\bar{X}_2)^2}{n_2-1}
+$$
+
+Soma total dos quadrados dos desvios:
+
+$$
+\sum_{i=1}^{n_2}(X_i-\bar{X}_2)^2=3482,4
+$$
+
+Denominador:
+
+$$
+n_2-1=15-1=14
+$$
+
+$$
+S_2^2=\frac{3482,4}{14}=248,75
+$$
+
+**Cálculo do Desvio Padrão Amostral** ($S_2$)
+
+$$
+S_2=\sqrt{S_2^2}=\sqrt{248,75}=15,78
+$$
+Diferença entre médias:
+
+$$
+\bar{X}_1-\bar{X}_2=209,27-197,80=11,47
+$$
+---
+
+### Estatística do Teste t de Welch
+
+Como $S_1^2 \neq S_2^2$, a fórmula aplicada é:
+
+$$
+t=\frac{\bar{X}_1-\bar{X}_2}{\sqrt{\frac{S_1^2}{n_1}+\frac{S_2^2}{n_2}}}
+$$
+
+**Substituição passo a passo:**
+
+$$
+\frac{S_1^2}{n_1}=\frac{59,21}{15}=3,94733
+$$
+
+$$
+\frac{S_2^2}{n_2}=\frac{248,75}{15}=16,5833
+$$
+
+$$
+\sqrt{3,94733+16,5833}=\sqrt{20,53063}=4,531
+$$
+
+$$
+t=\frac{11,47}{4,531}=2,531
+$$
+
+
+
+### Graus de Liberdade Ajustados
+
+$$
+gl=\frac{\left(\frac{S_1^2}{n_1}+\frac{S_2^2}{n_2}\right)^2}
+{\frac{\left(\frac{S_1^2}{n_1}\right)^2}{n_1-1}
++\frac{\left(\frac{S_2^2}{n_2}\right)^2}{n_2-1}}
+$$
+
+**Etapas:**
+
+$$
+\left(\frac{S_1^2}{n_1}+\frac{S_2^2}{n_2}\right)^2
+=(20,53063)^2=421,51
+$$
+
+$$
+\frac{\left(\frac{S_1^2}{n_1}\right)^2}{n_1-1}
+=\frac{(3,94733)^2}{14}
+=\frac{15,58}{14}
+$$
+
+$$
+\frac{\left(\frac{S_2^2}{n_2}\right)^2}{n_2-1}
+=\frac{(16,5833)^2}{14}
+=\frac{275,01}{14}
+$$
+
+$$
+gl=\frac{421,51}{1,112+19,643}\approx20,30
+$$
+
+Arredondamento sempre para baixo na tabela:
+
+$$
+gl=20
+$$
+
+
+---
+
+### Valor Crítico e Valor-$p$
+
+- Para teste bilateral, $\alpha=0,05$ e $gl=20$:
+
+$$
+t_{\text{crítico}}=\pm2,086
+$$
+
+- Valor calculado:
+
+$$
+t=2,531
+$$
+
+Como $2,531$ está entre $2,528$ e $2,845$, obtém-se:
+
+$$
+0,01<p<0,02
+$$
+
+Área acumulada até $t=2,531$:
+
+$$
+P(T\le2,531)\approx0,9899
+$$
+
+Área da cauda superior:
+
+$$
+1-0,9899=0,0101
+$$
+
+Teste bilateral:
+
+$$
+p=0,0101\times2=0,0202\approx0,020
+$$
+
+**Regra de decisão**
+
+Se
+
+$$
+|t_{\text{calculado}}|>t_{\text{crítico}}
+$$
+
+rejeita-se $H_0$.
+
+Se
+
+$$
+|t_{\text{calculado}}|\le t_{\text{crítico}}
+$$
+
+não se rejeita $H_0$.
+
+Como $$
+2,531>2,086
+$$ e $$
+p=0,020<0,05
+$$ logo, rejeita-se a hipótese nula.
+
+### DISCUSSÃO
+
+Obtido o valor de $t$, com 95\% de confiança, confirma-se uma diferença estatisticamente significativa entre os dois grupos, e o grupo 1 possui uma distância média significativamente maior que o grupo 2.
+
+Isso mostra que, entre as combinações testadas, a configuração do grupo 1 é, em média, a que garante maior alcance da bolinha.
+
+Prova que $G_1 > G_2$ e possui alcance significativamente maior:
+
+
+1. $\bar{X}_1 - \bar{X}_2 = 11,47 \rightarrow$ valor positivo
+
+2. Isso gerou $t = 2,531$, ainda positivo; se fosse negativo favoreceria $G_2$
+
+3. $t = 2,531 >$ limite crítico $(+2,086)$ e $p \approx 0,020 < 0,05$, confirma-se que essa vantagem não é sorte
+
+4. Ligando ao experimento: número maior = distância maior = alcance maior
+
+
+
+
+## 🧠 Considerações finais
+
+Rejeita-se a igualdade de médias populacionais; os grupos diferem significativamente. A configuração experimental correspondente ao Grupo 1 sendo a que apresentou, de forma estatisticamente válida, maior distância média de lançamento, com diferença de 11,47 cm e probabilidade inferior a 2\% de esse resultado ter ocorrido apenas por variação aleatória.
+
+
+
+## 📖 Referências
+
+WELCH, B. L. The Generalization of Student’s Problem when Several Different Population Variances are Involved. Biometrika, v. 34, n. 1/2, p. 28–35, 1947. Explicação acessível: https://www.itl.nist.gov/div898/handbook/eda/section3/eda353.htm.
