@@ -72,6 +72,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="index_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -88,7 +117,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#metodologia" id="toc-metodologia" class="nav-link" data-scroll-target="#metodologia"><span class="header-section-number">3</span> ⚙️ Metodologia</a></li>
   <li><a href="#resultados-e-discussão" id="toc-resultados-e-discussão" class="nav-link" data-scroll-target="#resultados-e-discussão"><span class="header-section-number">4</span> 🔍 Resultados e Discussão</a></li>
   <li><a href="#considerações-finais" id="toc-considerações-finais" class="nav-link" data-scroll-target="#considerações-finais"><span class="header-section-number">5</span> 🧠 Considerações finais</a></li>
-  <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências"><span class="header-section-number">6</span> 📖 Referências</a></li>
   </ul>
 </nav>
 </div>
@@ -111,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Relatório 09</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Relatório 09</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar o código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Esconder o código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver o código fonte</a></li></ul></div></div>
 <p class="subtitle lead"><a href="https://bendeivide.github.io/courses/epaec/" target="_blank">Estatística e Probabilidade</a> <br> <a href="https://bendeivide.github.io" target="_blank">Prof.&nbsp;Ben Dêivide (DEFIM/CAP/UFSJ)</a></p>
 </div>
 
@@ -129,7 +157,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Data de Publicação</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">28/06/2026, 20:32</p>
+      <p class="date">01/07/2026, 01:18</p>
     </div>
   </div>
   
@@ -143,23 +171,158 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introdução" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">1</span> 📌 Introdução</h2>
+<p>A regressão linear é utilizada para quantificar e descrever a relação entre duas variáveis contínuas, permitindo analisar tendências entre seus valores.</p>
+<p>Neste experimento foi analisada a relação entre o ângulo de lançamento da catapulta (variável independente <span class="math inline">\(X\)</span>) e a distância percorrida pela bolinha (variável dependente <span class="math inline">\(Y\)</span>), utilizando os valores médios obtidos experimentalmente.</p>
 </section>
 <section id="objetivos" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="objetivos"><span class="header-section-number">2</span> 🎯 Objetivos</h2>
-<hr>
+<p>Estudar a distância percorrida pela bolinha após ser arremessada pela catapulta em função do ângulo, por meio da variável <span class="math inline">\(B^{+}\)</span>.</p>
+<p>Também verificar se existe uma relação significativa entre o ângulo utilizado e a distância percorrida pela bolinha, identificando qual ângulo proporciona a maior distância.</p>
 </section>
 <section id="metodologia" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="metodologia"><span class="header-section-number">3</span> ⚙️ Metodologia</h2>
-<hr>
+<p><strong>Materiais usados:</strong></p>
+<p>Catapulta ajustável, bolinha, e trena métrica.</p>
+<p><strong>Procedimento</strong> a configuração:</p>
+<p>Foi utilizado a combinação: O<span class="math inline">\(^-\)</span> (Nível I), A<span class="math inline">\(^{+}\)</span> (Nível II), A<span class="math inline">\(^{-}\)</span> (Nível III), testados com os ângulos: <span class="math inline">\(160^\circ\)</span>, <span class="math inline">\(150^\circ\)</span>, <span class="math inline">\(140^\circ\)</span>, <span class="math inline">\(130^\circ\)</span>, <span class="math inline">\(120^\circ\)</span>, <span class="math inline">\(110^\circ\)</span>, <span class="math inline">\(100^\circ\)</span>, <span class="math inline">\(90^\circ\)</span> e <span class="math inline">\(80^\circ\)</span>. Para cada ângulo, foram realizadas duas medições de distância.</p>
+<p>Usaremos a equação geral da regressão linear:</p>
+<p><span class="math display">\[
+\hat{Y} = b_0 + b_1 \cdot X
+\]</span></p>
+<p>Onde:</p>
+<ul>
+<li><span class="math inline">\(\hat{Y}\)</span> = distância estimada</li>
+<li><span class="math inline">\(X\)</span> = ângulo de lançamento (<span class="math inline">\(^\circ\)</span>)</li>
+<li><span class="math inline">\(b_0\)</span> = intercepto da reta</li>
+<li><span class="math inline">\(b_1\)</span> = coeficiente angular</li>
+<li><span class="math inline">\(n = 9\)</span> observações.</li>
+</ul>
 </section>
 <section id="resultados-e-discussão" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="resultados-e-discussão"><span class="header-section-number">4</span> 🔍 Resultados e Discussão</h2>
+<p>Usaremos a média para reduzir erros aleatórios de medição e ter um valor representativo para cada angulo.</p>
+<p><strong>Dados experimentais e médias</strong></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Ângulo (°)"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">160</span>, <span class="dv">150</span>, <span class="dv">140</span>, <span class="dv">130</span>, <span class="dv">120</span>, <span class="dv">110</span>, <span class="dv">100</span>, <span class="dv">90</span>, <span class="dv">80</span>),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Distância 1 (m)"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.20</span>, <span class="fl">0.51</span>, <span class="fl">1.22</span>, <span class="fl">1.57</span>, <span class="fl">1.69</span>, <span class="fl">2.02</span>, <span class="fl">2.11</span>, <span class="fl">2.09</span>, <span class="fl">2.15</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Distância 2 (m)"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.22</span>, <span class="fl">0.76</span>, <span class="fl">1.07</span>, <span class="fl">1.44</span>, <span class="fl">1.75</span>, <span class="fl">2.07</span>, <span class="fl">2.02</span>, <span class="fl">2.07</span>, <span class="fl">2.09</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Média (m)"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.210</span>, <span class="fl">0.635</span>, <span class="fl">1.145</span>, <span class="fl">1.505</span>, <span class="fl">1.720</span>, <span class="fl">2.045</span>, <span class="fl">2.065</span>, <span class="fl">2.080</span>, <span class="fl">2.120</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(dados)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(dados)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Ângulo.... Distância.1..m. Distância.2..m. Média..m.
+1        160            0.20            0.22     0.210
+2        150            0.51            0.76     0.635
+3        140            1.22            1.07     1.145
+4        130            1.57            1.44     1.505
+5        120            1.69            1.75     1.720
+6        110            2.02            2.07     2.045
+7        100            2.11            2.02     2.065
+8         90            2.09            2.07     2.080
+9         80            2.15            2.09     2.120</code></pre>
+</div>
+</div>
+<p><strong>Cálculo das somatórias</strong></p>
+<p><span class="math display">\[
+\sum X = 160 + 150 + 140 + 130 + 120 + 110 + 100 + 90 + 80 = 1080
+\]</span></p>
+<p><span class="math display">\[
+\sum Y = 0,210 + 0,635 + 1,145 + 1,505 + 1,720 + 2,045 + 2,065 + 2,080 + 2,120 = 13,525
+\]</span></p>
+<p><span class="math display">\[
+\sum XY = (160 \cdot 0,210) + (150 \cdot 0,635) + \dots + (80 \cdot 2,120)
+= 33,6 + 95,25 + 160,3 + 195,65 + 206,4 + 224,95 + 206,5 + 187,2 + 169,6
+= 1479,45
+\]</span></p>
+<p><span class="math display">\[
+\sum X^2 = 160^2 + 150^2 + \dots + 80^2 = 25600 + 22500 + 19600 + 16900 + 14400 + 12100 + 10000 + 8100 + 6400 = 135600
+\]</span></p>
+<p><span class="math display">\[
+\sum Y^2 = 0,0441 + 0,403225 + 1,311025 + 2,265025 + 2,9584 + 4,182025 + 4,264225 + 4,3264 + 4,4944 = 24,2487
+\]</span></p>
+<p><strong>Médias aritméticas</strong></p>
+<p><span class="math display">\[
+\bar{X} = \frac{\sum X}{n} = \frac{1080}{9} = 120^\circ
+\]</span></p>
+<p><span class="math display">\[
+\bar{Y} = \frac{\sum Y}{n} = \frac{13,525}{9} \approx 1,5028 \, m
+\]</span></p>
+<p><strong>Coeficiente angular (<span class="math inline">\((b_1)\)</span>)</strong></p>
+<p>A formula para calcular <span class="math inline">\(b_1\)</span> é:</p>
+<p><span class="math display">\[
+b_1 = \frac{n \cdot \sum XY - \sum X \cdot \sum Y}{n \cdot \sum X^2 - (\sum X)^2}
+\]</span></p>
+<p><span class="math display">\[
+b_1 = \frac{9 \times 1479,45 - 1080 \times 13,525}{9 \times 135600 - (1080)^2} = \frac{13315,05 - 14607}{1220400 - 1166400} = \frac{-1291,95}{54000} = \mathbf{-0,0239}
+\]</span></p>
+<p>O valor negativo indica que, quanto menor o ângulo, maior a distância percorrida.</p>
+<p><strong>Calculando o <span class="math inline">\(b_0\)</span> (intercepto)</strong></p>
+<p><span class="math display">\[b_0 = \bar{Y} - b_1 \cdot \bar{X}
+\]</span></p>
+<p><span class="math display">\[
+b_0 = 1,5028 - (-0,0239) \times 120 = 1,5028 + 2,868 = 4,3708
+\]</span></p>
+<p>Achando a equação final da reta de regressão, temos:</p>
+<p><span class="math display">\[
+\hat{Y} = b_0 + b_1 \cdot X
+\]</span></p>
+<p><span class="math display">\[
+\hat{Y} = 4,3708 - 0,0239 \cdot X
+\]</span></p>
+<p>Buscando verificar a qualidade da regressão (coeficiente de correlação (<span class="math inline">\(r\)</span>)), temos que:</p>
+<p><span class="math display">\[
+r = \frac{n \cdot \sum XY - \sum X \cdot \sum Y}
+{\sqrt{\left[ n \cdot \sum X^2 - (\sum X)^2 \right]
+\cdot
+\left[ n \cdot \sum Y^2 - (\sum Y)^2 \right]}}
+\]</span></p>
+<p><span class="math display">\[
+r =
+\frac{-1291,95}
+{\sqrt{(9 \times 135600 - 1080^2)
+\times
+(9 \times 24,2487 - 13,525^2)}}
+\]</span></p>
+<p><span class="math display">\[
+r =
+\frac{-1291,95}
+{\sqrt{54000 \times 35,3127}}
+=
+\frac{-1291,95}
+{\sqrt{1906885,8}}
+=
+\frac{-1291,95}{1380,90}
+\approx
+-0,935
+\]</span> O valor <span class="math inline">\(r \approx -0,935\)</span> confirma uma correlação linear negativa muito forte entre as variáveis.</p>
+<p><strong>Valores estimados</strong></p>
+<ul>
+<li><p><span class="math inline">\(160^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 160 = 0,5468\ \text{m}\)</span></p></li>
+<li><p><span class="math inline">\(150^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 150 = 0,7858\ \text{m}\)</span></p></li>
+<li><p><span class="math inline">\(140^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 140 = 1,0248\ \text{m}\)</span></p></li>
+<li><p><span class="math inline">\(130^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 130 = 1,2638\ \text{m}\)</span></p></li>
+<li><p><span class="math inline">\(120^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 120 = 1,5028\ \text{m}\)</span></p></li>
+<li><p><span class="math inline">\(110^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 110 = 1,7418\ \text{m}\)</span></p></li>
+<li><p><span class="math inline">\(100^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 100 = 1,9808\ \text{m}\)</span></p></li>
+<li><p><span class="math inline">\(90^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 90 = 2,2198\ \text{m}\)</span></p></li>
+<li><p><span class="math inline">\(80^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 80 = 2,4588\ \text{m}\)</span></p></li>
+</ul>
+<p>Pela equação de regressão obtida (<span class="math inline">\((\hat{Y} = 4,3708 - 0,0239 \cdot X)\)</span>), verifica-se uma relação linear negativa: a distância diminui à medida que o ângulo aumenta.</p>
+<p>Observando os dados experimentais, a maior média de distância ocorre no ângulo de <span class="math inline">\(80^\circ\)</span>, com <span class="math inline">\(2,12\,\text{m}\)</span>. A partir de <span class="math inline">\(90^\circ\)</span> até <span class="math inline">\(160^\circ\)</span>, a distância diminui progressivamente. Dentro da faixa de ângulos testada, o menor valor de ângulo <span class="math inline">\((80^\circ)\)</span> corresponde tanto ao maior valor médio medido quanto ao maior valor estimado pela equação, sendo definido como o ponto máximo observado.</p>
 </section>
 <section id="considerações-finais" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="considerações-finais"><span class="header-section-number">5</span> 🧠 Considerações finais</h2>
-</section>
-<section id="referências" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="referências"><span class="header-section-number">6</span> 📖 Referências</h2>
+<ul>
+<li><p>Nas condições do experimento, o ângulo de 80° apresentou o maior alcance.</p></li>
+<li><p>A regressão linear obtida descreve adequadamente a tendência dos dados observados.</p></li>
+<li><p>O coeficiente de correlação confirma uma relação forte e inversa entre o ângulo e a distância percorrida.</p></li>
+</ul>
 <!-- -->
 
 </section>
@@ -617,62 +780,232 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Código fonte</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Só mude aqui!!!!</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Wadmilson Costa da Fonseca e Cruz"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Relatório 09"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> referencias.bib</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># A partir daqui nao faca alteracoes!!!!!</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> true</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="an">csl:</span><span class="co"> associacao-brasileira-de-normas-tecnicas-ipea.csl</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "&lt;a href='https://bendeivide.github.io/courses/epaec/' target='_blank'&gt;Estatística e Probabilidade&lt;/a&gt; &lt;/br&gt; &lt;a href='https://bendeivide.github.io' target='_blank'&gt;Prof. Ben Dêivide (DEFIM/CAP/UFSJ)&lt;/a&gt;"</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="an">include-before-body:</span><span class="co"> header.html</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> now</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="an">date-format:</span><span class="co"> "DD/MM/YYYY, HH:mm"</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="an">lang:</span><span class="co"> pt-BR</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: bootstrap</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">    #css: styles.css</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📌 Introdução</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🎯 Objetivos</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## ⚙️ Metodologia</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🔍 Resultados e Discussão</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🧠 Considerações finais</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📖 Referências</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Só mude aqui!!!!</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Wadmilson Costa da Fonseca e Cruz"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Relatório 09"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> referencias.bib</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># A partir daqui nao faca alteracoes!!!!!</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> true</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="an">csl:</span><span class="co"> associacao-brasileira-de-normas-tecnicas-ipea.csl</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "&lt;a href='https://bendeivide.github.io/courses/epaec/' target='_blank'&gt;Estatística e Probabilidade&lt;/a&gt; &lt;/br&gt; &lt;a href='https://bendeivide.github.io' target='_blank'&gt;Prof. Ben Dêivide (DEFIM/CAP/UFSJ)&lt;/a&gt;"</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="an">include-before-body:</span><span class="co"> header.html</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> now</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="an">date-format:</span><span class="co"> "DD/MM/YYYY, HH:mm"</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="an">lang:</span><span class="co"> pt-BR</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: bootstrap</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">    #css: styles.css</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📌 Introdução</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>A regressão linear é utilizada para quantificar e descrever a relação entre duas variáveis contínuas, permitindo analisar tendências entre seus valores.</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>Neste experimento foi analisada a relação entre o ângulo de lançamento da catapulta (variável independente $X$) e a distância percorrida pela bolinha (variável dependente $Y$), utilizando os valores médios obtidos experimentalmente.</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🎯 Objetivos</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>Estudar a distância percorrida pela bolinha após ser arremessada pela catapulta em função do ângulo, por meio da variável $B^{+}$.</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>Também verificar se existe uma relação significativa entre o ângulo utilizado e a distância percorrida pela bolinha, identificando qual ângulo proporciona a maior distância.</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="fu">## ⚙️ Metodologia</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>**Materiais usados:**</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>Catapulta ajustável, bolinha, e trena métrica.</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>**Procedimento**</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>a configuração:</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>Foi utilizado a combinação: O$^-$ (Nível I), A$^{+}$ (Nível II), A$^{-}$ (Nível III), testados com os ângulos: $160^\circ$, $150^\circ$, $140^\circ$, $130^\circ$, $120^\circ$, $110^\circ$, $100^\circ$, $90^\circ$ e $80^\circ$. Para cada ângulo, foram realizadas duas medições de distância.</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>Usaremos a equação geral da regressão linear:</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>\hat{Y} = b_0 + b_1 \cdot X</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>Onde:</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\hat{Y}$ = distância estimada</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$X$ = ângulo de lançamento ($^\circ$)</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$b_0$ = intercepto da reta</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$b_1$ = coeficiente angular</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$n = 9$ observações.</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🔍 Resultados e Discussão</span></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>Usaremos a média para reduzir erros aleatórios de medição e ter um valor representativo para cada angulo.</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>**Dados experimentais e médias**</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Ângulo (°)"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">160</span>, <span class="dv">150</span>, <span class="dv">140</span>, <span class="dv">130</span>, <span class="dv">120</span>, <span class="dv">110</span>, <span class="dv">100</span>, <span class="dv">90</span>, <span class="dv">80</span>),</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Distância 1 (m)"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.20</span>, <span class="fl">0.51</span>, <span class="fl">1.22</span>, <span class="fl">1.57</span>, <span class="fl">1.69</span>, <span class="fl">2.02</span>, <span class="fl">2.11</span>, <span class="fl">2.09</span>, <span class="fl">2.15</span>),</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Distância 2 (m)"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.22</span>, <span class="fl">0.76</span>, <span class="fl">1.07</span>, <span class="fl">1.44</span>, <span class="fl">1.75</span>, <span class="fl">2.07</span>, <span class="fl">2.02</span>, <span class="fl">2.07</span>, <span class="fl">2.09</span>),</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Média (m)"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.210</span>, <span class="fl">0.635</span>, <span class="fl">1.145</span>, <span class="fl">1.505</span>, <span class="fl">1.720</span>, <span class="fl">2.045</span>, <span class="fl">2.065</span>, <span class="fl">2.080</span>, <span class="fl">2.120</span>)</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(dados)</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(dados)</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>**Cálculo das somatórias**</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>\sum X = 160 + 150 + 140 + 130 + 120 + 110 + 100 + 90 + 80 = 1080</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>\sum Y = 0,210 + 0,635 + 1,145 + 1,505 + 1,720 + 2,045 + 2,065 + 2,080 + 2,120 = 13,525</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>\sum XY = (160 \cdot 0,210) + (150 \cdot 0,635) + \dots + (80 \cdot 2,120) </span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>= 33,6 + 95,25 + 160,3 + 195,65 + 206,4 + 224,95 + 206,5 + 187,2 + 169,6 </span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>= 1479,45</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>\sum X^2 = 160^2 + 150^2 + \dots + 80^2 = 25600 + 22500 + 19600 + 16900 + 14400 + 12100 + 10000 + 8100 + 6400 = 135600</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>\sum Y^2 = 0,0441 + 0,403225 + 1,311025 + 2,265025 + 2,9584 + 4,182025 + 4,264225 + 4,3264 + 4,4944 = 24,2487</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>**Médias aritméticas**</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>\bar{X} = \frac{\sum X}{n} = \frac{1080}{9} = 120^\circ</span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>\bar{Y} = \frac{\sum Y}{n} = \frac{13,525}{9} \approx 1,5028 \, m</span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>**Coeficiente angular ($(b_1)$)**</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>A formula para calcular $b_1$ é:</span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>b_1 = \frac{n \cdot \sum XY - \sum X \cdot \sum Y}{n \cdot \sum X^2 - (\sum X)^2}</span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>b_1 = \frac{9 \times 1479,45 - 1080 \times 13,525}{9 \times 135600 - (1080)^2} = \frac{13315,05 - 14607}{1220400 - 1166400} = \frac{-1291,95}{54000} = \mathbf{-0,0239}</span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a>O valor negativo indica que, quanto menor o ângulo, maior a distância percorrida.</span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a>**Calculando o $b_0$ (intercepto)**</span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a>$$b_0 = \bar{Y} - b_1 \cdot \bar{X}</span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>b_0 = 1,5028 - (-0,0239) \times 120 = 1,5028 + 2,868 = 4,3708</span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>Achando a equação final da reta de regressão, temos:</span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>\hat{Y} = b_0 + b_1 \cdot X</span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>\hat{Y} = 4,3708 - 0,0239 \cdot X</span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>Buscando verificar a qualidade da regressão (coeficiente de correlação ($r$)), temos que:</span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>r = \frac{n \cdot \sum XY - \sum X \cdot \sum Y}</span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a>{\sqrt{\left<span class="co">[</span><span class="ot"> n \cdot \sum X^2 - (\sum X)^2 \right</span><span class="co">]</span></span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a>\cdot</span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a>\left<span class="co">[</span><span class="ot"> n \cdot \sum Y^2 - (\sum Y)^2 \right</span><span class="co">]</span>}}</span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>r =</span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>\frac{-1291,95}</span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>{\sqrt{(9 \times 135600 - 1080^2)</span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a>\times</span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a>(9 \times 24,2487 - 13,525^2)}}</span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a>r =</span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a>\frac{-1291,95}</span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a>{\sqrt{54000 \times 35,3127}}</span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a>=</span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a>\frac{-1291,95}</span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a>{\sqrt{1906885,8}}</span>
+<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a>=</span>
+<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a>\frac{-1291,95}{1380,90}</span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a>\approx</span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a>-0,935</span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a>O valor $r \approx -0,935$ confirma uma correlação linear negativa muito forte entre as variáveis.</span>
+<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a>**Valores estimados**</span>
+<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$160^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 160 = 0,5468\ \text{m}$</span>
+<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$150^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 150 = 0,7858\ \text{m}$</span>
+<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$140^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 140 = 1,0248\ \text{m}$</span>
+<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a><span class="ss"> - </span>$130^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 130 = 1,2638\ \text{m}$</span>
+<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$120^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 120 = 1,5028\ \text{m}$</span>
+<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$110^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 110 = 1,7418\ \text{m}$</span>
+<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$100^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 100 = 1,9808\ \text{m}$</span>
+<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$90^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 90 = 2,2198\ \text{m}$</span>
+<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$80^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 80 = 2,4588\ \text{m}$</span>
+<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a>Pela equação de regressão obtida ($(\hat{Y} = 4,3708 - 0,0239 \cdot X)$), verifica-se uma relação linear negativa: a distância diminui à medida que o ângulo aumenta.</span>
+<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a>Observando os dados experimentais, a maior média de distância ocorre no ângulo de $80^\circ$, com $2,12\,\text{m}$. A partir de $90^\circ$ até $160^\circ$, a distância diminui progressivamente. Dentro da faixa de ângulos testada, o menor valor de ângulo $(80^\circ)$ corresponde tanto ao maior valor médio medido quanto ao maior valor estimado pela equação, sendo definido como o ponto máximo observado.</span>
+<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🧠 Considerações finais</span></span>
+<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Nas condições do experimento, o ângulo de 80° apresentou o maior alcance.</span>
+<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A regressão linear obtida descreve adequadamente a tendência dos dados observados.</span>
+<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>O coeficiente de correlação confirma uma relação forte e inversa entre o ângulo e a distância percorrida.</span>
+<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a></span>
+</code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

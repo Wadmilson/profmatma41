@@ -28,30 +28,199 @@ execute:
 
 ## 📌 Introdução
 
+A regressão linear é utilizada para quantificar e descrever a relação entre duas variáveis contínuas, permitindo analisar tendências entre seus valores.
 
+Neste experimento foi analisada a relação entre o ângulo de lançamento da catapulta (variável independente $X$) e a distância percorrida pela bolinha (variável dependente $Y$), utilizando os valores médios obtidos experimentalmente.
 
 
 
 ## 🎯 Objetivos
 
+Estudar a distância percorrida pela bolinha após ser arremessada pela catapulta em função do ângulo, por meio da variável $B^{+}$.
 
+Também verificar se existe uma relação significativa entre o ângulo utilizado e a distância percorrida pela bolinha, identificando qual ângulo proporciona a maior distância.
 
-
----
 
 ## ⚙️ Metodologia
 
+**Materiais usados:**
 
----
+Catapulta ajustável, bolinha, e trena métrica.
+
+
+**Procedimento**
+a configuração:
+
+
+Foi utilizado a combinação: O$^-$ (Nível I), A$^{+}$ (Nível II), A$^{-}$ (Nível III), testados com os ângulos: $160^\circ$, $150^\circ$, $140^\circ$, $130^\circ$, $120^\circ$, $110^\circ$, $100^\circ$, $90^\circ$ e $80^\circ$. Para cada ângulo, foram realizadas duas medições de distância.
+
+Usaremos a equação geral da regressão linear:
+
+$$
+\hat{Y} = b_0 + b_1 \cdot X
+$$
+
+Onde:
+
+- $\hat{Y}$ = distância estimada
+- $X$ = ângulo de lançamento ($^\circ$)
+- $b_0$ = intercepto da reta
+- $b_1$ = coeficiente angular
+- $n = 9$ observações.
+
+
 
 ## 🔍 Resultados e Discussão
+Usaremos a média para reduzir erros aleatórios de medição e ter um valor representativo para cada angulo.
+
+**Dados experimentais e médias**
+```{r}
+dados <- data.frame(
+  "Ângulo (°)" = c(160, 150, 140, 130, 120, 110, 100, 90, 80),
+  "Distância 1 (m)" = c(0.20, 0.51, 1.22, 1.57, 1.69, 2.02, 2.11, 2.09, 2.15),
+  "Distância 2 (m)" = c(0.22, 0.76, 1.07, 1.44, 1.75, 2.07, 2.02, 2.07, 2.09),
+  "Média (m)" = c(0.210, 0.635, 1.145, 1.505, 1.720, 2.045, 2.065, 2.080, 2.120)
+)
+
+View(dados)
+print(dados)
+```
+
+
+**Cálculo das somatórias**
+ 
+$$
+\sum X = 160 + 150 + 140 + 130 + 120 + 110 + 100 + 90 + 80 = 1080
+$$
+ 
+$$
+\sum Y = 0,210 + 0,635 + 1,145 + 1,505 + 1,720 + 2,045 + 2,065 + 2,080 + 2,120 = 13,525
+$$
+ 
+$$
+\sum XY = (160 \cdot 0,210) + (150 \cdot 0,635) + \dots + (80 \cdot 2,120) 
+= 33,6 + 95,25 + 160,3 + 195,65 + 206,4 + 224,95 + 206,5 + 187,2 + 169,6 
+= 1479,45
+$$
+ 
+$$
+\sum X^2 = 160^2 + 150^2 + \dots + 80^2 = 25600 + 22500 + 19600 + 16900 + 14400 + 12100 + 10000 + 8100 + 6400 = 135600
+$$
+ 
+$$
+\sum Y^2 = 0,0441 + 0,403225 + 1,311025 + 2,265025 + 2,9584 + 4,182025 + 4,264225 + 4,3264 + 4,4944 = 24,2487
+$$
+ 
+**Médias aritméticas**
+ 
+$$
+\bar{X} = \frac{\sum X}{n} = \frac{1080}{9} = 120^\circ
+$$
+ 
+$$
+\bar{Y} = \frac{\sum Y}{n} = \frac{13,525}{9} \approx 1,5028 \, m
+$$
+ 
+**Coeficiente angular ($(b_1)$)**
+
+A formula para calcular $b_1$ é:
+
+$$
+b_1 = \frac{n \cdot \sum XY - \sum X \cdot \sum Y}{n \cdot \sum X^2 - (\sum X)^2}
+$$
+ 
+$$
+b_1 = \frac{9 \times 1479,45 - 1080 \times 13,525}{9 \times 135600 - (1080)^2} = \frac{13315,05 - 14607}{1220400 - 1166400} = \frac{-1291,95}{54000} = \mathbf{-0,0239}
+$$
+ 
+O valor negativo indica que, quanto menor o ângulo, maior a distância percorrida.
+
+
+**Calculando o $b_0$ (intercepto)**
+
+$$b_0 = \bar{Y} - b_1 \cdot \bar{X}
+$$
+
+$$
+b_0 = 1,5028 - (-0,0239) \times 120 = 1,5028 + 2,868 = 4,3708
+$$
+
+Achando a equação final da reta de regressão, temos:
+
+$$
+\hat{Y} = b_0 + b_1 \cdot X
+$$
+
+$$
+\hat{Y} = 4,3708 - 0,0239 \cdot X
+$$
+
+Buscando verificar a qualidade da regressão (coeficiente de correlação ($r$)), temos que:
+
+$$
+r = \frac{n \cdot \sum XY - \sum X \cdot \sum Y}
+{\sqrt{\left[ n \cdot \sum X^2 - (\sum X)^2 \right]
+\cdot
+\left[ n \cdot \sum Y^2 - (\sum Y)^2 \right]}}
+$$
+
+$$
+r =
+\frac{-1291,95}
+{\sqrt{(9 \times 135600 - 1080^2)
+\times
+(9 \times 24,2487 - 13,525^2)}}
+$$
+
+$$
+r =
+\frac{-1291,95}
+{\sqrt{54000 \times 35,3127}}
+=
+\frac{-1291,95}
+{\sqrt{1906885,8}}
+=
+\frac{-1291,95}{1380,90}
+\approx
+-0,935
+$$
+O valor $r \approx -0,935$ confirma uma correlação linear negativa muito forte entre as variáveis.
+
+**Valores estimados**
+
+
+- $160^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 160 = 0,5468\ \text{m}$
+    
+- $150^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 150 = 0,7858\ \text{m}$
+    
+- $140^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 140 = 1,0248\ \text{m}$
+    
+ - $130^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 130 = 1,2638\ \text{m}$
+    
+- $120^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 120 = 1,5028\ \text{m}$
+    
+- $110^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 110 = 1,7418\ \text{m}$
+    
+- $100^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 100 = 1,9808\ \text{m}$
+    
+- $90^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 90 = 2,2198\ \text{m}$
+    
+- $80^\circ \rightarrow \hat{Y} = 4,3708 - 0,0239 \times 80 = 2,4588\ \text{m}$
+
+
+Pela equação de regressão obtida ($(\hat{Y} = 4,3708 - 0,0239 \cdot X)$), verifica-se uma relação linear negativa: a distância diminui à medida que o ângulo aumenta.
+
+Observando os dados experimentais, a maior média de distância ocorre no ângulo de $80^\circ$, com $2,12\,\text{m}$. A partir de $90^\circ$ até $160^\circ$, a distância diminui progressivamente. Dentro da faixa de ângulos testada, o menor valor de ângulo $(80^\circ)$ corresponde tanto ao maior valor médio medido quanto ao maior valor estimado pela equação, sendo definido como o ponto máximo observado.
+
 
 
 ## 🧠 Considerações finais
 
+- Nas condições do experimento, o ângulo de 80° apresentou o maior alcance.
+
+- A regressão linear obtida descreve adequadamente a tendência dos dados observados.
+
+- O coeficiente de correlação confirma uma relação forte e inversa entre o ângulo e a distância percorrida.
 
 
-
-
-## 📖 Referências
 
